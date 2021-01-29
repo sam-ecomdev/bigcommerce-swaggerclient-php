@@ -239,6 +239,49 @@ class Configuration
     {
         return $this->password;
     }
+	
+	/**
+	     * Adds a default header
+	     *
+	     * @param string $headerName  header name (e.g. Token)
+	     * @param string $headerValue header value (e.g. 1z8wp3)
+	     *
+	     * @return Configuration
+	     */
+	    public function addDefaultHeader($headerName, $headerValue)
+	    {
+	        if (!is_string($headerName)) {
+	            throw new \InvalidArgumentException('Header name must be a string.');
+	        }
+
+	        $this->defaultHeaders[$headerName] =  $headerValue;
+	        return $this;
+	    }
+
+	    /**
+	     * Gets the default header
+	     *
+	     * @return array An array of default header(s)
+	     */
+	    public function getDefaultHeaders()
+	    {
+	        return array_merge( $this->defaultHeaders, [
+	            'X-Auth-Client' => $this->clientId,
+	            'X-Auth-Token'  => $this->accessToken,
+	        ] );
+	    }
+
+	    /**
+	     * Deletes a default header
+	     *
+	     * @param string $headerName the header to delete
+	     *
+	     * @return Configuration
+	     */
+	    public function deleteDefaultHeader($headerName)
+	    {
+	        unset($this->defaultHeaders[$headerName]);
+	    }
 
     /**
      * Sets the host
@@ -426,4 +469,51 @@ class Configuration
 
         return $keyWithPrefix;
     }
+
+    /**
+     * Sets the Client ID for OAuth
+     *
+     * @param string $clientId Client ID for OAuth
+     *
+     * @return Configuration
+     */
+    public function setClientId($clientId)
+    {
+        $this->clientId = $clientId;
+        return $this;
+    }
+
+    /**
+     * Gets the Client ID for OAuth
+     *
+     * @return string Client ID for OAuth
+     */
+    public function getClientId()
+    {
+        return $this->clientId;
+    }
+
+    /**
+     * Sets the client secret for OAuth
+     *
+     * @param string $clientSecret Client secret for OAuth
+     *
+     * @return Configuration
+     */
+    public function setClientSecret($clientSecret)
+    {
+        $this->clientSecret = $clientSecret;
+        return $this;
+    }
+
+    /**
+     * Gets the client secret for OAuth
+     *
+     * @return string Client secret for OAuth
+     */
+    public function getClientSecret()
+    {
+        return $this->clientSecret;
+    }
+
 }

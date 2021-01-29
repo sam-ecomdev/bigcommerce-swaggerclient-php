@@ -391,13 +391,13 @@ class ProductVariantFull extends ProductVariantBase
     /**
      * Sets 
      *
-     * @param string $ 
+     * @param string $s
      *
      * @return $this
      */
-    public function set($)
+    public function set($s)
     {
-        $this->container[''] = $;
+        $this->container[''] = $s;
 
         return $this;
     }
@@ -471,5 +471,3 @@ class ProductVariantFull extends ProductVariantBase
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-
