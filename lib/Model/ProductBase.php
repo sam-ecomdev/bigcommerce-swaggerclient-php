@@ -58,6 +58,7 @@ class ProductBase implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
+		'id' => 'int',
         'name' => 'string',
         'type' => 'string',
         'sku' => 'string',
@@ -130,6 +131,7 @@ class ProductBase implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
+		'id' => null,
         'name' => null,
         'type' => null,
         'sku' => null,
@@ -223,6 +225,7 @@ class ProductBase implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+		'id' => 'id',
         'name' => 'name',
         'type' => 'type',
         'sku' => 'sku',
@@ -295,6 +298,7 @@ class ProductBase implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+		'id' => 'setId',
         'name' => 'setName',
         'type' => 'setType',
         'sku' => 'setSku',
@@ -367,6 +371,7 @@ class ProductBase implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+		'id' => 'getId',
         'name' => 'getName',
         'type' => 'getType',
         'sku' => 'getSku',
@@ -605,6 +610,7 @@ class ProductBase implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+		$this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
         $this->container['sku'] = isset($data['sku']) ? $data['sku'] : null;
@@ -974,6 +980,29 @@ class ProductBase implements ModelInterface, ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
+	/**
+	     * Gets id
+	     *
+	     * @return int
+	     */
+	    public function getId()
+	    {
+	        return $this->container['id'];
+	    }
+
+	    /**
+	     * Sets id
+	     *
+	     * @param int $id Unique ID of the *Brand*. Read-Only.
+	     *
+	     * @return $this
+	     */
+	    public function setId($id)
+	    {
+	        $this->container['id'] = $id;
+
+	        return $this;
+	    }
 
     /**
      * Gets name
